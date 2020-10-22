@@ -7,15 +7,19 @@ public class Buggy{
 		System.out.println("Welcome to the Bill-Splitter");
 
 		System.out.print("Enter the total, pre-tax: ");
-		double total = input.nextInt();
+		double total = input.nextDouble();
 
 		System.out.print("How many people? ");
 		int numPeople = input.nextInt();
 
 		System.out.print("How much did you tip? ");
-     double tip = input.nextInt();
+     double tip = input.nextDouble();
 
-    double perPersonWT = total + tip;
+		 System.out.print("How much percentage tax did you pay? ");
+		 	int percentage = input.nextInt();
+
+		double Percentage1 = total*percentage/100;
+    double perPersonWT = total + tip + Percentage1;
 		double perPerson = perPersonWT / numPeople;
 
 
