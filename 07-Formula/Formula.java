@@ -26,24 +26,22 @@ public class Formula{
     System.out.print("The taxicab distance is " + taxicabDistance3);
     */
 
-  }
+  }//End of class main
   public static double cartesianDistance(double A2, double A1, double B2, double B1){
     double Ans = Math.sqrt((A2-A1)*(A2-A1) + (B2-B1)*(B2-B1));
     return Ans;
-  }
+  }//End of cartesianDistance
   public static int getX(String point){
     int comma = point.indexOf(",");
     String x = point.substring(1, comma);
-    System.out.println(x);
+    //System.out.println(x);
     return Integer.parseInt(x);
-  }
+  }//End of getX
   public static int getY(String point){
     int comma = point.indexOf(",");
-    int lbracket = point.indexOf(")");
-    int Fy = comma + 1;
-    String y = point.substring(Fy, lbracket);
-    System.out.println(y);
-    //Integer.parseInt(Fy);
+    int lbracket = point.indexOf(")")
+    String y = point.substring(comma + 2, lbracket);
+    //System.out.println(y);
     return Integer.parseInt(y);
-  }
+  }//End of getY
 }//End of class
