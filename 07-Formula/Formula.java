@@ -16,31 +16,32 @@ public class Formula{
     int y2 = getY(point2);
 
 
-    /*
-    double cartesianDistance1 = cartesianDistance(X2,X1,Y2,Y1);
-    System.out.print("The cartesian distance is " + cartesianDistance1);
-
-    int taxicabDistance1 = abs(F2-F1);
-    int taxicabDistance2 = abs(H2-H1);
-    int taxicabDistance3 = taxicabDistance1 + taxicabDistance2;
-    System.out.print("The taxicab distance is " + taxicabDistance3);
-    */
+    cartesianDistance(x1, x2, y1, y2);
+    taxicabDistance(x1, x2, y1, y2);
 
   }//End of class main
-  public static double cartesianDistance(double A2, double A1, double B2, double B1){
-    double Ans = Math.sqrt((A2-A1)*(A2-A1) + (B2-B1)*(B2-B1));
-    return Ans;
+
+  public static void cartesianDistance(int x1, int x2, int y1, int y2){
+    double Ans = Math.sqrt(Math.pow((x2-x1), 2)+ Math.pow((y2-y1), 2));
+    System.out.println("The cartesianDistance is:  " + Ans);
   }//End of cartesianDistance
+
+  public static void taxicabDistance(int x1, int x2, int y1, int y2){
+    double Ans2 = Math.abs(x2 - x1) + Math.abs(y2 - y1);
+    System.out.print("The taxicabDistance is: " + Ans2);
+  }//End of taxicabDistance
+
   public static int getX(String point){
     int comma = point.indexOf(",");
     String x = point.substring(1, comma);
     //System.out.println(x);
     return Integer.parseInt(x);
   }//End of getX
+
   public static int getY(String point){
     int comma = point.indexOf(",");
-    int lbracket = point.indexOf(")")
-    String y = point.substring(comma + 2, lbracket);
+    int lbracket = point.indexOf(")");
+    String y = point.substring((comma + 2), lbracket);
     //System.out.println(y);
     return Integer.parseInt(y);
   }//End of getY
