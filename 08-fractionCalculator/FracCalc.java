@@ -33,28 +33,43 @@ public class FracCalc {
     public static String produceAnswer(String input){
       int Space = input.indexOf(" ");//Here i am identifying the space in the equation. This will be used to find where my first num is located
       int totalcha = input.length();//Length of the String
-      int check = input.indexOf("_");
-      int Slash = input.indexOf("/");
+      String firstEqu = input.substring(0, Space);//First Num
+      String Oper = input.substring(Space + 1, Space + 2);//The operator
+      String secondEqu = input.substring( Space + 2, totalcha);//Second Num
+      int check1 = firstEqu.indexOf("_");//The _ in the fraction for example 4_5/6 for the first fraction
+      int check2 = secondEqu.indexOf("_");// Does the samething as line 36 but for the second fraction
+      int Slash1 = firstEqu.indexOf('/');//The slash in the fraction
+      int Slash2 = secondEqu.indexOf("/");// The slash in the second fraction
+      String allParts;
 
-      if (check != -1){
-        String wholeNum = input.substring(0, check);
-        String num = input.substring(check + 1, Slash);
-        String den = input.substring(Slash + 1, Space);
-        System.out.println("The denominator is: " + den);
-        System.out.println("The numerator is; " + num );
+
+
+      if (check1 != -1){//If check is -1 that means there is _ in the fraction
+        String wholeNum = firstEqu.substring(0, check1);//This takes the whole num from fraction one
+        String num = firstEqu.substring(check1 + 1, Slash1);//Takes the numerator from fraction one
+        String den = firstEqu.substring(Slash1 + 1);//Takes the denominator from fraction one
         System.out.println("the whole number is: " + wholeNum);
-
-
-
-        String wholeNum2 = input.substring(Space + 2, );
+        System.out.println("The numerator is; " + num );
+        System.out.println("The denominator is: " + den);
       }
-      else{
-        String firstEqu = input.substring(0, Space);//First Num
-        String Oper = input.substring(Space + 1, Space + 2);//The operator
-        String secondEqu = input.substring( Space + 2, totalcha);//Second Num
-        System.out.println("The operator is: " + Oper);//Once again just checking
-        System.out.println("This is the first number: " + firstEqu);//For checking
-        System.out.println("The second number is: " + secondEqu);
+      else{//If there is no _ in the fraction it prints the first/second num as it is
+        String wholeNum = firstEqu;
+        System.out.print("Number one is: " + wholeNum);
+      }
+
+      if(check2 != -1){//If check is -1 that means there is _ in the fraction
+        String wholeNum2 = secondEqu.substring(0, check2);//The whole num for fraction two
+        String num2 = secondEqu.substring(check2 + 1, Slash2);// Num for fraction 2
+        String den2 = secondEqu.substring(Slash2 + 1);//Den for second fractions
+        System.out.println("Whole num: " + wholeNum2);
+        System.out.println("Num for num 2: " + num2);
+        System.out.println("Den for num 2: " + den2);
+        allParts = wholeNum2  +  num2  +  den2;// Stores all the parts of fraction two and is returned 
+      }
+      else{//If there is no _ in the fraction it prints the first/second num as it is
+        String wholeNum2 = secondEqu;
+        System.out.println(wholeNum2);
+        allParts = secondEqu;
       }
 
       // TODO: Implement this function to produce the solution to the input
@@ -66,7 +81,7 @@ public class FracCalc {
       //               Note: Answer does not need to be reduced, but it must be correct.
       // Final project: All answers must be reduced.
       //               Example "4/5 * 1_2/4" returns "1_1/5".
-      return "Hey" ;
+      return allParts;
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
