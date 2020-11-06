@@ -33,11 +33,29 @@ public class FracCalc {
     public static String produceAnswer(String input){
       int Space = input.indexOf(" ");//Here i am identifying the space in the equation. This will be used to find where my first num is located
       int totalcha = input.length();//Length of the String
-      String firstEqu = input.substring(0, Space);//First Num
-      String Oper = input.substring(Space + 1, Space + 2);//The operator
-      String secondEqu = input.substring( Space + 2, totalcha);//Second Num
-      System.out.println(Oper);//Once again just checking
-      System.out.println(firstEqu);//For checking
+      int check = input.indexOf("_");
+      int Slash = input.indexOf("/");
+
+      if (check != -1){
+        String wholeNum = input.substring(0, check);
+        String num = input.substring(check + 1, Slash);
+        String den = input.substring(Slash + 1, Space);
+        System.out.println("The denominator is: " + den);
+        System.out.println("The numerator is; " + num );
+        System.out.println("the whole number is: " + wholeNum);
+
+
+
+        String wholeNum2 = input.substring(Space + 2, );
+      }
+      else{
+        String firstEqu = input.substring(0, Space);//First Num
+        String Oper = input.substring(Space + 1, Space + 2);//The operator
+        String secondEqu = input.substring( Space + 2, totalcha);//Second Num
+        System.out.println("The operator is: " + Oper);//Once again just checking
+        System.out.println("This is the first number: " + firstEqu);//For checking
+        System.out.println("The second number is: " + secondEqu);
+      }
 
       // TODO: Implement this function to produce the solution to the input
       // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
@@ -48,8 +66,7 @@ public class FracCalc {
       //               Note: Answer does not need to be reduced, but it must be correct.
       // Final project: All answers must be reduced.
       //               Example "4/5 * 1_2/4" returns "1_1/5".
-
-      return secondEqu;
+      return "Hey" ;
     }//end produceAnswer method
 
     // TODO: Fill in the space below with helper methods
