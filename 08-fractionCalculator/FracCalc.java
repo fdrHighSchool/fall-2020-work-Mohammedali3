@@ -30,6 +30,12 @@ public class FracCalc {
      * @return the result of the fraction after it has been calculated.
      *      Example: return ==> "1_1/4"
      */
+    /*
+    * Name: produceAnswer
+    * Purpose: Find the answer to the question being asked in main
+    * Input: The user input from main
+    * Return: As of right now we are outputing the second fraction 
+    */
     public static String produceAnswer(String input){
       int Space = input.indexOf(" ");//Here i am identifying the space in the equation. This will be used to find where my first num is located
       int totalcha = input.length();//Length of the String
@@ -79,7 +85,7 @@ public class FracCalc {
         System.out.println("The denominator is: " + den2);
         allParts = num2 + " " + den2;
       }
-      
+
       else{//If there is no _ in the fraction it prints the first/second num as it is
         String wholeNum2 = secondEqu;
         System.out.println(wholeNum2);
