@@ -48,8 +48,14 @@ public class FracCalc {
         String wholeNum = firstEqu.substring(0, check1);//This takes the whole num from fraction one
         String num = firstEqu.substring(check1 + 1, Slash1);//Takes the numerator from fraction one
         String den = firstEqu.substring(Slash1 + 1);//Takes the denominator from fraction one
-        System.out.println("the whole number is: " + wholeNum);
+        System.out.println("The whole number is: " + wholeNum);
         System.out.println("The numerator is; " + num );
+        System.out.println("The denominator is: " + den);
+      }
+      else if ((check1 = -1) && (Slash1 = -1)){
+        String num = firstEqu.substring(0, Slash1);
+        String den = firstEqu.substring(Slash1 + 1);
+        System.out.println("The numerator is: " + num);
         System.out.println("The denominator is: " + den);
       }
       else{//If there is no _ in the fraction it prints the first/second num as it is
@@ -64,8 +70,16 @@ public class FracCalc {
         System.out.println("Whole num: " + wholeNum2);
         System.out.println("Num for num 2: " + num2);
         System.out.println("Den for num 2: " + den2);
-        allParts = wholeNum2  +  num2  +  den2;// Stores all the parts of fraction two and is returned 
+        allParts = wholeNum2  + " " +  num2  + " " +  den2;// Stores all the parts of fraction two and is returned
       }
+      else if ((check2 = -1) && (Slash2 = -1)){
+        String num2 = firstEqu.substring(0, Slash2);
+        String den2 = firstEqu.substring(Slash2 + 1);
+        System.out.println("The numerator is: " + num2);
+        System.out.println("The denominator is: " + den2);
+        allParts = num2 + " " + den2;
+      }
+      
       else{//If there is no _ in the fraction it prints the first/second num as it is
         String wholeNum2 = secondEqu;
         System.out.println(wholeNum2);
