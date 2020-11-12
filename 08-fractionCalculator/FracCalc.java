@@ -17,7 +17,7 @@ public class FracCalc {
         Scanner input = new Scanner(System.in);
         System.out.print("Please enter in your equation it must be in the format as first equation space operation space second equation. For example 4 + 3:  ");
         String holdsEqu = input.nextLine();
-        String Input1 = produceAnswer(holdsEqu);
+        String Input1 = detachExperssion(holdsEqu);
         System.out.print(Input1);
 
 
@@ -34,9 +34,9 @@ public class FracCalc {
     * Name: produceAnswer
     * Purpose: Find the answer to the question being asked in main
     * Input: The user input from main
-    * Return: As of right now we are outputing the second fraction 
+    * Return: As of right now we are outputing the second fraction
     */
-    public static String produceAnswer(String input){
+    public static String detachExperssion(String input){
       int Space = input.indexOf(" ");//Here i am identifying the space in the equation. This will be used to find where my first num is located
       int totalcha = input.length();//Length of the String
       String firstEqu = input.substring(0, Space);//First Num
@@ -54,42 +54,51 @@ public class FracCalc {
         String wholeNum = firstEqu.substring(0, check1);//This takes the whole num from fraction one
         String num = firstEqu.substring(check1 + 1, Slash1);//Takes the numerator from fraction one
         String den = firstEqu.substring(Slash1 + 1);//Takes the denominator from fraction one
-        System.out.println("The whole number is: " + wholeNum);
-        System.out.println("The numerator is; " + num );
-        System.out.println("The denominator is: " + den);
+        //System.out.println("The whole number is: " + wholeNum + " " + "The numerator 1 is: " + num + " " +"The denominator 1 is: " + den);
+        //---------------------------------------------------------------------------------------------------------------------------------//
+        int wholeInt = Integer.parseInt(wholeNum);
+        int numInt = Integer.parseInt(num);
+        int denInt = Integer.parseInt(den);
+        int numAftMath = wholeInt * denInt + numInt;
+        System.out.println("The numerator 1 is: " + numAftMath + " " + "The denominator 1 is " + den);
       }
-      else if ((check1 = -1) && (Slash1 = -1)){
+      else if ((check1 == -1) && (Slash1 != -1)){// _ is not in the fraction but / is
         String num = firstEqu.substring(0, Slash1);
         String den = firstEqu.substring(Slash1 + 1);
-        System.out.println("The numerator is: " + num);
-        System.out.println("The denominator is: " + den);
+        System.out.println("The numerator 1 is: " + num + " " + "The denominator 1 is: " + den );
       }
-      else{//If there is no _ in the fraction it prints the first/second num as it is
-        String wholeNum = firstEqu;
-        System.out.print("Number one is: " + wholeNum);
+      else{//If there is no _ and / in the fraction it prints the first/second num as it is
+        String num = firstEqu;
+        int den = 1;
+        System.out.println("The numerator 1 is: " + num + " " + "The denominator 1 is: " + den);
       }
 
       if(check2 != -1){//If check is -1 that means there is _ in the fraction
         String wholeNum2 = secondEqu.substring(0, check2);//The whole num for fraction two
         String num2 = secondEqu.substring(check2 + 1, Slash2);// Num for fraction 2
         String den2 = secondEqu.substring(Slash2 + 1);//Den for second fractions
-        System.out.println("Whole num: " + wholeNum2);
-        System.out.println("Num for num 2: " + num2);
-        System.out.println("Den for num 2: " + den2);
-        allParts = wholeNum2  + " " +  num2  + " " +  den2;// Stores all the parts of fraction two and is returned
+       //-------------------------------------------------------------------------------------------//
+
+        int whole2Int = Integer.parseInt(wholeNum2);
+        int num2Int = Integer.parseInt(num2);
+        int den2Int = Integer.parseInt(den2);
+        int numAftMath2 = whole2Int * den2Int + num2Int;
+        System.out.println("The numerator 2 is: " + numAftMath2 + " " + "The denominator 2 is " + den2);
+        
+        allParts = "The whole number 2 is: " + wholeNum2 + " " + "The numerator 2 is: " + num2 + " " +"The denominator 2 is: " + den2;// Stores all the parts of fraction two and is returned
       }
-      else if ((check2 = -1) && (Slash2 = -1)){
-        String num2 = firstEqu.substring(0, Slash2);
-        String den2 = firstEqu.substring(Slash2 + 1);
-        System.out.println("The numerator is: " + num2);
-        System.out.println("The denominator is: " + den2);
-        allParts = num2 + " " + den2;
+      else if ((check2 == -1) && (Slash2 != -1)){// _ is not in the fraction but / is
+        String num2 = secondEqu.substring(0, Slash2);
+        String den2 = secondEqu.substring(Slash2 + 1);
+        //System.out.println("The numerator is: " + num2 + " " + "The denominator is: " + den2);
+        allParts = "The numerator 2 is: " + num2 + " " + "The denominator 2 is: " + den2;
       }
 
-      else{//If there is no _ in the fraction it prints the first/second num as it is
-        String wholeNum2 = secondEqu;
-        System.out.println(wholeNum2);
-        allParts = secondEqu;
+      else{//If there is no _ and / in the fraction it prints the first/second num as it is
+        String num2 = secondEqu;
+        int den2 = 1;
+        String both = "The numerator 2 is : " + num2 + " " +"The denominator 2 is : " + den2;
+        allParts = both;
       }
 
       // TODO: Implement this function to produce the solution to the input
