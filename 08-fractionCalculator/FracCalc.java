@@ -74,7 +74,7 @@ public class FracCalc {
       }
 
       if(check2 != -1){//If check is -1 that means there is _ in the fraction
-        String wholeNum2 = secondEqu.substring(0, check2);//The whole num for fraction two
+        String wholeNum2 = secondEqu.substring(1, check2);//The whole num for fraction two
         String num2 = secondEqu.substring(check2 + 1, Slash2);// Num for fraction 2
         String den2 = secondEqu.substring(Slash2 + 1);//Den for second fractions
        //-------------------------------------------------------------------------------------------//
@@ -84,8 +84,8 @@ public class FracCalc {
         int den2Int = Integer.parseInt(den2);
         int numAftMath2 = whole2Int * den2Int + num2Int;
         System.out.println("The numerator 2 is: " + numAftMath2 + " " + "The denominator 2 is " + den2);
-        
-        allParts = "The whole number 2 is: " + wholeNum2 + " " + "The numerator 2 is: " + num2 + " " +"The denominator 2 is: " + den2;// Stores all the parts of fraction two and is returned
+
+        //allParts = "The whole number 2 is: " + wholeNum2 + " " + "The numerator 2 is: " + num2 + " " +"The denominator 2 is: " + den2;// Stores all the parts of fraction two and is returned
       }
       else if ((check2 == -1) && (Slash2 != -1)){// _ is not in the fraction but / is
         String num2 = secondEqu.substring(0, Slash2);
