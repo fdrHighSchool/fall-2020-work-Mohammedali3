@@ -12,13 +12,28 @@ public class FracCalc {
         // Checkpoint 1: Create a Scanner, read one line of input, pass that input to produceAnswer, print the result.
         // Checkpoint 2: Accept user input multiple times.
 
-
-
         Scanner input = new Scanner(System.in);
-        System.out.print("Please enter in your equation it must be in the format as first equation space operation space second equation. For example 4 + 3:  ");
-        String holdsEqu = input.nextLine();
-        String Input1 = detachExperssion(holdsEqu);
-        System.out.print(Input1);
+
+        //Lets the user play many times//
+        boolean event = true;
+
+
+        while (event) {
+          System.out.print("Please enter in your equation it must be in the format as first equation space operation space second equation. For example 4 + 3: ");
+          String holdsEqu = input.nextLine();
+          String Input1 = detachExperssion(holdsEqu);
+          System.out.println(Input1);
+
+          System.out.println("Do you want to quit? if so please enter quit: ");
+          String quit = input.nextLine();
+          if (quit.equals("quit")){
+            break;
+          }
+
+        }
+
+
+
 
 
     }//end main method
@@ -31,7 +46,7 @@ public class FracCalc {
      *      Example: return ==> "1_1/4"
      */
     /*
-    * Name: produceAnswer
+    * Name: detachExpression
     * Purpose: Find the answer to the question being asked in main
     * Input: The user input from main
     * Return: As of right now we are outputing the second fraction
@@ -41,7 +56,7 @@ public class FracCalc {
       int totalcha = input.length();//Length of the String
       String firstEqu = input.substring(0, Space);//First Num
       String Oper = input.substring(Space + 1, Space + 2);//The operator
-      String secondEqu = input.substring( Space + 2, totalcha);//Second Num
+      String secondEqu = input.substring( Space + 3, totalcha);//Second Num
       int check1 = firstEqu.indexOf("_");//The _ in the fraction for example 4_5/6 for the first fraction
       int check2 = secondEqu.indexOf("_");// Does the samething as line 36 but for the second fraction
       int Slash1 = firstEqu.indexOf('/');//The slash in the fraction
@@ -49,57 +64,59 @@ public class FracCalc {
       String allParts;
 
 
+      //get a/b, c/d so math can get done with those numbers
+      //int num1A, den1A, num2A, den2A;
+      int num, den, num2, den2;
+      String Ans;
+
+
 
       if (check1 != -1){//If check is -1 that means there is _ in the fraction
-        String wholeNum = firstEqu.substring(0, check1);//This takes the whole num from fraction one
-        String num = firstEqu.substring(check1 + 1, Slash1);//Takes the numerator from fraction one
-        String den = firstEqu.substring(Slash1 + 1);//Takes the denominator from fraction one
-        //System.out.println("The whole number is: " + wholeNum + " " + "The numerator 1 is: " + num + " " +"The denominator 1 is: " + den);
-        //---------------------------------------------------------------------------------------------------------------------------------//
-        int wholeInt = Integer.parseInt(wholeNum);
-        int numInt = Integer.parseInt(num);
-        int denInt = Integer.parseInt(den);
-        int numAftMath = wholeInt * denInt + numInt;
-        System.out.println("The numerator 1 is: " + numAftMath + " " + "The denominator 1 is " + den);
+        num = convertToImproper(firstEqu, check1, Slash1);
+        den = getDenominator(firstEqu, Slash1);
+        System.out.println(num + "/" + den);
       }
+
+
       else if ((check1 == -1) && (Slash1 != -1)){// _ is not in the fraction but / is
-        String num = firstEqu.substring(0, Slash1);
-        String den = firstEqu.substring(Slash1 + 1);
-        System.out.println("The numerator 1 is: " + num + " " + "The denominator 1 is: " + den );
+        num = Integer.parseInt(firstEqu.substring(0, Slash1));
+        den = Integer.parseInt(firstEqu.substring(Slash1 + 1));
+        System.out.println(num + "/" + den);
       }
+
       else{//If there is no _ and / in the fraction it prints the first/second num as it is
-        String num = firstEqu;
-        int den = 1;
-        System.out.println("The numerator 1 is: " + num + " " + "The denominator 1 is: " + den);
+        num = Integer.parseInt(firstEqu);
+        den = 1;
+        System.out.println(num + "/" + den);
       }
 
-      if(check2 != -1){//If check is -1 that means there is _ in the fraction
-        String wholeNum2 = secondEqu.substring(1, check2);//The whole num for fraction two
-        String num2 = secondEqu.substring(check2 + 1, Slash2);// Num for fraction 2
-        String den2 = secondEqu.substring(Slash2 + 1);//Den for second fractions
-       //-------------------------------------------------------------------------------------------//
+      if(check2 != -1){
+        num2 = convertToImproper(secondEqu, check2, Slash2);
+        den2 = getDenominator(secondEqu, Slash2);
+        System.out.println(num + "/" + den);
+      }//If check is -1 that means there is _ in the fraction
 
-        int whole2Int = Integer.parseInt(wholeNum2);
-        int num2Int = Integer.parseInt(num2);
-        int den2Int = Integer.parseInt(den2);
-        int numAftMath2 = whole2Int * den2Int + num2Int;
-        System.out.println("The numerator 2 is: " + numAftMath2 + " " + "The denominator 2 is " + den2);
-
-        //allParts = "The whole number 2 is: " + wholeNum2 + " " + "The numerator 2 is: " + num2 + " " +"The denominator 2 is: " + den2;// Stores all the parts of fraction two and is returned
-      }
       else if ((check2 == -1) && (Slash2 != -1)){// _ is not in the fraction but / is
-        String num2 = secondEqu.substring(0, Slash2);
-        String den2 = secondEqu.substring(Slash2 + 1);
+        num2 = Integer.parseInt(secondEqu.substring(0, Slash2));
+        den2 = Integer.parseInt(secondEqu.substring(Slash2 + 1));
         //System.out.println("The numerator is: " + num2 + " " + "The denominator is: " + den2);
-        allParts = "The numerator 2 is: " + num2 + " " + "The denominator 2 is: " + den2;
+        allParts = num2 + "/" +den2;;
+        System.out.println(allParts);
       }
 
       else{//If there is no _ and / in the fraction it prints the first/second num as it is
-        String num2 = secondEqu;
-        int den2 = 1;
-        String both = "The numerator 2 is : " + num2 + " " +"The denominator 2 is : " + den2;
+        num2 = Integer.parseInt(secondEqu);
+        den2 = 1;
+        String both = num2 + "/" +den2;
         allParts = both;
+        System.out.println(both);
       }
+
+      if (Oper == "+" ){
+        Ans = add(num,den,num2,den2);
+        System.out.println(Ans);
+      }
+
 
       // TODO: Implement this function to produce the solution to the input
       // Checkpoint 1: Return the second operand.  Example "4/5 * 1_2/4" returns "1_2/4".
@@ -110,8 +127,9 @@ public class FracCalc {
       //               Note: Answer does not need to be reduced, but it must be correct.
       // Final project: All answers must be reduced.
       //               Example "4/5 * 1_2/4" returns "1_1/5".
-      return allParts;
+      return "";
     }//end produceAnswer method
+
 
     // TODO: Fill in the space below with helper methods
 
@@ -122,10 +140,12 @@ public class FracCalc {
      * @param b - Second integer.
      * @return The GCD.
      */
+
     public static int greatestCommonDivisor(int a, int b){
       return 0;
 
     }//end greatestCommonDivisor method
+
 
     /**
      * leastCommonMultiple - Find the smallest integer that can be evenly divided by two integers.
@@ -134,9 +154,36 @@ public class FracCalc {
      * @param b - Second integer.
      * @return The LCM.
      */
+
     public static int leastCommonMultiple(int a, int b){
       return 0;
 
     }//end leastCommonMultiple
 
-}//end class
+    //convert from a_b/c to the numerator in the improper fraction form
+    public static int convertToImproper(String frac, int underscore, int fracSlash){
+      int wholeNum = Integer.parseInt(frac.substring(0, underscore));//This takes the whole num from fraction one
+      int num = Integer.parseInt(frac.substring(underscore + 1, fracSlash));//Takes the numerator from fraction one
+      int den = Integer.parseInt(frac.substring(fracSlash + 1));//Takes the denominator from fraction one
+
+      int numAftMath = wholeNum * den + num;
+      return numAftMath;
+    }//end convertToImproper
+
+    public static int getDenominator(String frac, int fracSlash){
+      return Integer.parseInt(frac.substring(fracSlash + 1));
+    }//end getDenominator
+
+
+
+    public static String add(int numA, int denA, int numB, int denB){
+      int sumNum = (numA * denB) + (numB * denA);
+      int sumDen = (denA * denB);
+      return (sumNum + "/" + sumDen);
+    }//end add
+
+
+
+
+
+}
