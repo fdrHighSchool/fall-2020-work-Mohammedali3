@@ -27,15 +27,10 @@ public class FracCalc {
           System.out.println("Do you want to quit? if so please enter quit: ");
           String quit = input.nextLine();
           if (quit.equals("quit")){
-            break;
+            event = false;
           }
 
         }
-
-
-
-
-
     }//end main method
 
     /**
@@ -54,21 +49,22 @@ public class FracCalc {
     public static String detachExperssion(String input){
       int Space = input.indexOf(" ");//Here i am identifying the space in the equation. This will be used to find where my first num is located
       int totalcha = input.length();//Length of the String
+
       String firstEqu = input.substring(0, Space);//First Num
       String Oper = input.substring(Space + 1, Space + 2);//The operator
       String secondEqu = input.substring( Space + 3, totalcha);//Second Num
+
       int check1 = firstEqu.indexOf("_");//The _ in the fraction for example 4_5/6 for the first fraction
       int check2 = secondEqu.indexOf("_");// Does the samething as line 36 but for the second fraction
       int Slash1 = firstEqu.indexOf('/');//The slash in the fraction
       int Slash2 = secondEqu.indexOf("/");// The slash in the second fraction
       String allParts;
+      String Ans;
 
 
       //get a/b, c/d so math can get done with those numbers
       //int num1A, den1A, num2A, den2A;
       int num, den, num2, den2;
-      String Ans;
-
 
 
       if (check1 != -1){//If check is -1 that means there is _ in the fraction
@@ -76,7 +72,6 @@ public class FracCalc {
         den = getDenominator(firstEqu, Slash1);
         System.out.println(num + "/" + den);
       }
-
 
       else if ((check1 == -1) && (Slash1 != -1)){// _ is not in the fraction but / is
         num = Integer.parseInt(firstEqu.substring(0, Slash1));
@@ -112,10 +107,16 @@ public class FracCalc {
         System.out.println(both);
       }
 
-      if (Oper == "+" ){
+      //produceAnswer(num,den,num2,den2);
+
+      if (Oper.equals("+") ){
         Ans = add(num,den,num2,den2);
         System.out.println(Ans);
       }
+
+
+
+
 
 
       // TODO: Implement this function to produce the solution to the input
@@ -128,7 +129,12 @@ public class FracCalc {
       // Final project: All answers must be reduced.
       //               Example "4/5 * 1_2/4" returns "1_1/5".
       return "";
-    }//end produceAnswer method
+    }//end detachExpression method
+
+
+
+
+
 
 
     // TODO: Fill in the space below with helper methods
@@ -168,7 +174,7 @@ public class FracCalc {
 
       int numAftMath = wholeNum * den + num;
       return numAftMath;
-    }//end convertToImproper
+    }//end getWholeNum
 
     public static int getDenominator(String frac, int fracSlash){
       return Integer.parseInt(frac.substring(fracSlash + 1));
