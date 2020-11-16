@@ -40,6 +40,7 @@ public class FracCalc {
      * @return the result of the fraction after it has been calculated.
      *      Example: return ==> "1_1/4"
      */
+    
     /*
     * Name: detachExpression
     * Purpose: Find the answer to the question being asked in main
@@ -166,6 +167,12 @@ public class FracCalc {
 
     }//end leastCommonMultiple
 
+    /*
+    * Name: convertToImproper
+    * Purpose: convert from a_b/c to the numerator in the improper fraction form
+    * Input: _,/,and the fraction
+    * Return: returns a/c rather then a_b/c
+    */
     //convert from a_b/c to the numerator in the improper fraction form
     public static int convertToImproper(String frac, int underscore, int fracSlash){
       int wholeNum = Integer.parseInt(frac.substring(0, underscore));//This takes the whole num from fraction one
@@ -176,12 +183,23 @@ public class FracCalc {
       return numAftMath;
     }//end getWholeNum
 
+    /*
+    * Name: getDenominator
+    * Purpose: Find the denominator for fractions like 6_6/7
+    * Input: The fraction and slash
+    * Return: gives the denominator
+    */
     public static int getDenominator(String frac, int fracSlash){
       return Integer.parseInt(frac.substring(fracSlash + 1));
     }//end getDenominator
 
 
-
+    /*
+    * Name: add
+    * Purpose: adds the two fraction
+    * Input: the two fractions
+    * Return: the result after adding
+    */
     public static String add(int numA, int denA, int numB, int denB){
       int sumNum = (numA * denB) + (numB * denA);
       int sumDen = (denA * denB);
