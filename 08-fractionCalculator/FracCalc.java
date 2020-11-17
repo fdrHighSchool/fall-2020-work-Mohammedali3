@@ -59,8 +59,9 @@ public class FracCalc {
       int check2 = secondEqu.indexOf("_");// Does the samething as line 36 but for the second fraction
       int Slash1 = firstEqu.indexOf('/');//The slash in the fraction
       int Slash2 = secondEqu.indexOf("/");// The slash in the second fraction
-      String allParts;
-      String Ans;
+      String allParts = "";
+      String Ans = "";
+
 
 
       //get a/b, c/d so math can get done with those numbers
@@ -71,25 +72,25 @@ public class FracCalc {
       if (check1 != -1){//If check is -1 that means there is _ in the fraction
         num = convertToImproper(firstEqu, check1, Slash1);
         den = getDenominator(firstEqu, Slash1);
-        System.out.println(num + "/" + den);
+        //System.out.println(num + "/" + den);
       }
 
       else if ((check1 == -1) && (Slash1 != -1)){// _ is not in the fraction but / is
         num = Integer.parseInt(firstEqu.substring(0, Slash1));
         den = Integer.parseInt(firstEqu.substring(Slash1 + 1));
-        System.out.println(num + "/" + den);
+        //System.out.println(num + "/" + den);
       }
 
       else{//If there is no _ and / in the fraction it prints the first/second num as it is
         num = Integer.parseInt(firstEqu);
         den = 1;
-        System.out.println(num + "/" + den);
+        //System.out.println(num + "/" + den);
       }
 
       if(check2 != -1){
         num2 = convertToImproper(secondEqu, check2, Slash2);
         den2 = getDenominator(secondEqu, Slash2);
-        System.out.println(num + "/" + den);
+        //System.out.println(num + "/" + den);
       }//If check is -1 that means there is _ in the fraction
 
       else if ((check2 == -1) && (Slash2 != -1)){// _ is not in the fraction but / is
@@ -97,7 +98,7 @@ public class FracCalc {
         den2 = Integer.parseInt(secondEqu.substring(Slash2 + 1));
         //System.out.println("The numerator is: " + num2 + " " + "The denominator is: " + den2);
         allParts = num2 + "/" +den2;;
-        System.out.println(allParts);
+        //System.out.println(allParts);
       }
 
       else{//If there is no _ and / in the fraction it prints the first/second num as it is
@@ -105,34 +106,31 @@ public class FracCalc {
         den2 = 1;
         String both = num2 + "/" +den2;
         allParts = both;
-        System.out.println(both);
+        //System.out.println(both);
       }
 
       //produceAnswer(num,den,num2,den2);
 
       if (Oper.equals("+") ){
         Ans = add(num,den,num2,den2);
-        System.out.println(Ans);
       }
 
       else if (Oper.equals("-") ){
         Ans = subtract(num,den,num2,den2);
-        System.out.println(Ans);
       }
 
       else if (Oper.equals("*") ){
         Ans = multiply(num,den,num2,den2);
-        System.out.println(Ans);
       }
 
       else if (Oper.equals("/") ){
         Ans = divide(num,den,num2,den2);
-        System.out.println(Ans);
       }
 
       else{
         System.out.println("Please enter a valid input");
       }
+
 
 
 
@@ -224,7 +222,11 @@ public class FracCalc {
     public static String add(int numA, int denA, int numB, int denB){
       int sumNum = (numA * denB) + (numB * denA);
       int sumDen = (denA * denB);
-      return (sumNum + "/" + sumDen);
+      int simplify = Simp(sumNum,sumDen);
+      System.out.print(simplify);
+      String Ans1 = sumNum + "/" + sumDen;
+      return Ans1;
+
     }//end add
 
     /*
@@ -236,7 +238,10 @@ public class FracCalc {
     public static String subtract(int numA, int denA, int numB, int denB){
       int sumNum = (numA * denB) - (numB * denA);
       int sumDen = (denA * denB);
-      return (sumNum + "/" + sumDen);
+      int simplify = Simp(sumNum,sumDen);
+      System.out.print(simplify);
+      String Ans1 = sumNum + "/" + sumDen;
+      return Ans1;
     }//end subtract
 
     /*
@@ -248,7 +253,10 @@ public class FracCalc {
     public static String multiply(int numA, int denA, int numB, int denB){
       int sumNum = (numA*numB);
       int sumDen = (denA*denB);
-      return (sumNum + "/" + sumDen);
+      int simplify = Simp(sumNum,sumDen);
+      System.out.print(simplify);
+      String Ans1 = sumNum + "/" + sumDen;
+      return Ans1;
     }//end multiply
 
     /*
@@ -260,10 +268,13 @@ public class FracCalc {
     public static String divide(int numA, int denA, int numB, int denB){
       int sumNum = (numA*denB);
       int sumDen = (denA*numB);
-      return (sumNum + "/" + sumDen);
+      String Ans1 = sumNum + "/" + sumDen;
+      int simplify = Simp(sumNum,sumDen);
+      System.out.print(simplify);
+      return Ans1 ;
     }//end divide
 
-
+    //cubamaster
     public static int Simp(int num, int den) { // simplification method
     if (num < 0) {
         num = num * -1;
