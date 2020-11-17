@@ -40,7 +40,7 @@ public class FracCalc {
      * @return the result of the fraction after it has been calculated.
      *      Example: return ==> "1_1/4"
      */
-    
+
     /*
     * Name: detachExpression
     * Purpose: Find the answer to the question being asked in main
@@ -115,6 +115,25 @@ public class FracCalc {
         System.out.println(Ans);
       }
 
+      else if (Oper.equals("-") ){
+        Ans = subtract(num,den,num2,den2);
+        System.out.println(Ans);
+      }
+
+      else if (Oper.equals("*") ){
+        Ans = multiply(num,den,num2,den2);
+        System.out.println(Ans);
+      }
+
+      else if (Oper.equals("/") ){
+        Ans = divide(num,den,num2,den2);
+        System.out.println(Ans);
+      }
+
+      else{
+        System.out.println("Please enter a valid input");
+      }
+
 
 
 
@@ -129,7 +148,7 @@ public class FracCalc {
       //               Note: Answer does not need to be reduced, but it must be correct.
       // Final project: All answers must be reduced.
       //               Example "4/5 * 1_2/4" returns "1_1/5".
-      return "";
+      return Ans;
     }//end detachExpression method
 
 
@@ -167,6 +186,7 @@ public class FracCalc {
 
     }//end leastCommonMultiple
 
+
     /*
     * Name: convertToImproper
     * Purpose: convert from a_b/c to the numerator in the improper fraction form
@@ -182,6 +202,7 @@ public class FracCalc {
       int numAftMath = wholeNum * den + num;
       return numAftMath;
     }//end getWholeNum
+
 
     /*
     * Name: getDenominator
@@ -206,6 +227,59 @@ public class FracCalc {
       return (sumNum + "/" + sumDen);
     }//end add
 
+    /*
+    * Name: subtract
+    * Purpose: subtracts the two fraction
+    * Input: the two fractions
+    * Return: the result after subtracts
+    */
+    public static String subtract(int numA, int denA, int numB, int denB){
+      int sumNum = (numA * denB) - (numB * denA);
+      int sumDen = (denA * denB);
+      return (sumNum + "/" + sumDen);
+    }//end subtract
+
+    /*
+    * Name: multiply
+    * Purpose: multiply the two fraction
+    * Input: the two fractions
+    * Return: the result after multiplying
+    */
+    public static String multiply(int numA, int denA, int numB, int denB){
+      int sumNum = (numA*numB);
+      int sumDen = (denA*denB);
+      return (sumNum + "/" + sumDen);
+    }//end multiply
+
+    /*
+    * Name: divide
+    * Purpose: divide the two fraction
+    * Input: the two fractions
+    * Return: the result after dividing
+    */
+    public static String divide(int numA, int denA, int numB, int denB){
+      int sumNum = (numA*denB);
+      int sumDen = (denA*numB);
+      return (sumNum + "/" + sumDen);
+    }//end divide
+
+
+    public static int Simp(int num, int den) { // simplification method
+    if (num < 0) {
+        num = num * -1;
+    }
+    if (den < 0) {
+        den = den * -1;
+    }
+    int min = Math.min(num, den);
+    int last = 1;
+    for (int i = 1; i <= min; i++) {
+        if (num % i == 0 && den % i == 0) {
+            last = i;
+        }
+    }
+    return last;
+  }
 
 
 
