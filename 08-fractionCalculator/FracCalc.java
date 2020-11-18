@@ -164,10 +164,22 @@ public class FracCalc {
      * @param b - Second integer.
      * @return The GCD.
      */
-
     public static int greatestCommonDivisor(int a, int b){
-      return 0;
-
+      int minimum = 1;
+      int gcd = 1;
+      //Finds min of a and b
+      if (a > b){
+        min = b;
+      }
+      else if (a < b){
+        min = a;
+      }
+      else if (a == b){
+        return a;
+      }
+      //finds the gcd
+      for (int i = 1; i <= min; i++){
+        return 0;
     }//end greatestCommonDivisor method
 
 
@@ -178,6 +190,7 @@ public class FracCalc {
      * @param b - Second integer.
      * @return The LCM.
      */
+
 
     public static int leastCommonMultiple(int a, int b){
       return 0;
@@ -222,8 +235,8 @@ public class FracCalc {
     public static String add(int numA, int denA, int numB, int denB){
       int sumNum = (numA * denB) + (numB * denA);
       int sumDen = (denA * denB);
-      int simplify = Simp(sumNum,sumDen);
-      System.out.print(simplify);
+      //int simplify = Simp(sumNum,sumDen);
+      //System.out.print(simplify);
       String Ans1 = sumNum + "/" + sumDen;
       return Ans1;
 
@@ -238,7 +251,7 @@ public class FracCalc {
     public static String subtract(int numA, int denA, int numB, int denB){
       int sumNum = (numA * denB) - (numB * denA);
       int sumDen = (denA * denB);
-      int simplify = Simp(sumNum,sumDen);
+      int simplify = greatestCommonDivisor(sumNum,sumDen);
       System.out.print(simplify);
       String Ans1 = sumNum + "/" + sumDen;
       return Ans1;
@@ -253,7 +266,7 @@ public class FracCalc {
     public static String multiply(int numA, int denA, int numB, int denB){
       int sumNum = (numA*numB);
       int sumDen = (denA*denB);
-      int simplify = Simp(sumNum,sumDen);
+      int simplify = greatestCommonDivisor(sumNum,sumDen);
       System.out.print(simplify);
       String Ans1 = sumNum + "/" + sumDen;
       return Ans1;
@@ -268,31 +281,13 @@ public class FracCalc {
     public static String divide(int numA, int denA, int numB, int denB){
       int sumNum = (numA*denB);
       int sumDen = (denA*numB);
-      String Ans1 = sumNum + "/" + sumDen;
-      int simplify = Simp(sumNum,sumDen);
+      int simplify = greatestCommonDivisor(sumNum,sumDen);
       System.out.print(simplify);
+      String Ans1 = sumNum + "/" + sumDen;
       return Ans1 ;
     }//end divide
 
-    //cubamaster
-    public static int Simp(int num, int den) { // simplification method
-    if (num < 0) {
-        num = num * -1;
-    }
-    if (den < 0) {
-        den = den * -1;
-    }
-    int min = Math.min(num, den);
-    int last = 1;
-    for (int i = 1; i <= min; i++) {
-        if (num % i == 0 && den % i == 0) {
-            last = i;
-        }
-    }
-    return last;
-  }
 
 
-
-
+    
 }
