@@ -186,6 +186,9 @@ public class FracCalc {
         String conAns = CTM(simpNum,simpDen);
         return conAns;
       }
+      if(simpDen == 1){
+        return String.valueOf(simpNum);
+      }
       return simpAns;
     }
 
