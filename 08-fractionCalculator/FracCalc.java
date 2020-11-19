@@ -34,19 +34,13 @@ public class FracCalc {
     }//end main method
 
     /**
-     * produceAnswer - This function takes a String 'input' and produces the result.
+     * detachExperssion - This function takes a String 'input' and produces the result.
      * @param input - A fraction string that needs to be evaluated.  For your program, this will be the user input.
      *      Example: input ==> "1/2 + 3/4"
      * @return the result of the fraction after it has been calculated.
      *      Example: return ==> "1_1/4"
      */
 
-    /*
-    * Name: detachExpression
-    * Purpose: Find the answer to the question being asked in main
-    * Input: The user input from main
-    * Return: As of right now we are outputing the second fraction
-    */
     public static String detachExperssion(String input){
       int Space = input.indexOf(" ");//Here i am identifying the space in the equation. This will be used to find where my first num is located
       int totalcha = input.length();//Length of the String
@@ -61,11 +55,6 @@ public class FracCalc {
       int Slash2 = secondEqu.indexOf("/");// The slash in the second fraction
       String allParts = "";
       String Ans = "";
-
-
-
-      //get a/b, c/d so math can get done with those numbers
-      //int num1A, den1A, num2A, den2A;
       int num, den, num2, den2;
 
 
@@ -169,18 +158,53 @@ public class FracCalc {
       int gcd = 1;
       //Finds min of a and b
       if (a > b){
-        min = b;
+        minimum = b;
       }
       else if (a < b){
-        min = a;
+        minimum = a;
       }
-      else if (a == b){
+      else{
         return a;
       }
       //finds the gcd
-      for (int i = 1; i <= min; i++){
-        return 0;
+      for (int i = 1; i <= minimum; i++){
+        if (a % i == 0 && b % i == 0){
+          gcd = i;
+        }
+      }
+      return gcd;
     }//end greatestCommonDivisor method
+
+    /*
+    * Name: simp
+    * Purpose: return simplifed version of the fraction
+    * Input: Num, den, and GCD
+    * Return: The simplifed version of the fraction
+    */
+    public static String simp(int gcf, int num, int den){
+      String simpAns = "";
+      int simpNum = num/gcf;
+      int simpDen = den/gcf;
+      simpAns = simpNum + "/" + simpDen;
+      if(num > den){
+        String conAns = CTM(simpNum,simpDen);
+        return conAns;
+      }
+      return simpAns;
+    }
+
+    /*
+    * Name: CTM
+    * Purpose: Makes mixed
+    * Input: Num, Den
+    * Return: The mixed fraction
+    */
+    public static String CTM(int num, int den){
+      int whole = num / den; //find whole number
+      int newNum = num % den; //find numerator
+      String result = whole + "_" + newNum + "/" + den; //organizes makes it look like A_C/D
+      return result; //return the result
+    }
 
 
     /**
@@ -235,11 +259,9 @@ public class FracCalc {
     public static String add(int numA, int denA, int numB, int denB){
       int sumNum = (numA * denB) + (numB * denA);
       int sumDen = (denA * denB);
-      //int simplify = Simp(sumNum,sumDen);
-      //System.out.print(simplify);
-      String Ans1 = sumNum + "/" + sumDen;
-      return Ans1;
-
+      int simplify = greatestCommonDivisor(sumNum,sumDen);
+      String simpAns3 = simp(simplify,sumNum,sumDen);
+      return simpAns3;
     }//end add
 
     /*
@@ -252,9 +274,8 @@ public class FracCalc {
       int sumNum = (numA * denB) - (numB * denA);
       int sumDen = (denA * denB);
       int simplify = greatestCommonDivisor(sumNum,sumDen);
-      System.out.print(simplify);
-      String Ans1 = sumNum + "/" + sumDen;
-      return Ans1;
+      String simpAns3 = simp(simplify,sumNum,sumDen);
+      return simpAns3;
     }//end subtract
 
     /*
@@ -267,9 +288,8 @@ public class FracCalc {
       int sumNum = (numA*numB);
       int sumDen = (denA*denB);
       int simplify = greatestCommonDivisor(sumNum,sumDen);
-      System.out.print(simplify);
-      String Ans1 = sumNum + "/" + sumDen;
-      return Ans1;
+      String simpAns3 = simp(simplify,sumNum,sumDen);
+      return simpAns3;
     }//end multiply
 
     /*
@@ -282,12 +302,11 @@ public class FracCalc {
       int sumNum = (numA*denB);
       int sumDen = (denA*numB);
       int simplify = greatestCommonDivisor(sumNum,sumDen);
-      System.out.print(simplify);
-      String Ans1 = sumNum + "/" + sumDen;
-      return Ans1 ;
+      String simpAns3 = simp(simplify,sumNum,sumDen);
+      return simpAns3;
     }//end divide
 
 
 
-    
+
 }
