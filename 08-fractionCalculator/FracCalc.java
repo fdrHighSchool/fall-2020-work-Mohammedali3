@@ -58,6 +58,10 @@ public class FracCalc {
       String Ans = "";
       int num, den, num2, den2;
 
+      if(secondEqu.equals("0") && Oper.equals("/")){//Makes it so you can't put a zero for the second number when dividing
+        String error = "This is invalid input please try again";
+        return error;
+      }
 
       if (check1 != -1){//If check is -1 that means there is _ in the fraction
         num = convertToImproper(firstEqu, check1, Slash1);
@@ -93,6 +97,11 @@ public class FracCalc {
         num2 = Integer.parseInt(secondEqu);
         den2 = 1;
         String both = num2 + "/" +den2;
+      }
+
+      if(den == 0 || den2 == 0){//Makes it so you can't put 0 for the denominator
+        String error = "This is invalid input please try again";
+        return error;
       }
 
 
@@ -188,6 +197,9 @@ public class FracCalc {
       }
       if(simpDen == 1){
         return String.valueOf(simpNum);
+      }
+      if(simpNum == 0){
+        return String.valueOf(simpDen);
       }
       return simpAns;
     }
