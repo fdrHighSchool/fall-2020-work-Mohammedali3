@@ -53,6 +53,7 @@ public class FracCalc {
       int check2 = secondEqu.indexOf("_");// Does the samething as line 36 but for the second fraction
       int Slash1 = firstEqu.indexOf('/');//The slash in the fraction
       int Slash2 = secondEqu.indexOf("/");// The slash in the second fraction
+
       String allParts = "";
       String Ans = "";
       int num, den, num2, den2;
@@ -86,19 +87,14 @@ public class FracCalc {
         num2 = Integer.parseInt(secondEqu.substring(0, Slash2));
         den2 = Integer.parseInt(secondEqu.substring(Slash2 + 1));
         //System.out.println("The numerator is: " + num2 + " " + "The denominator is: " + den2);
-        allParts = num2 + "/" +den2;;
-        //System.out.println(allParts);
       }
 
       else{//If there is no _ and / in the fraction it prints the first/second num as it is
         num2 = Integer.parseInt(secondEqu);
         den2 = 1;
         String both = num2 + "/" +den2;
-        allParts = both;
-        //System.out.println(both);
       }
 
-      //produceAnswer(num,den,num2,den2);
 
       if (Oper.equals("+") ){
         Ans = add(num,den,num2,den2);
@@ -203,6 +199,10 @@ public class FracCalc {
       int whole = num / den; //find whole number
       int newNum = num % den; //find numerator
       String result = whole + "_" + newNum + "/" + den; //organizes makes it look like A_C/D
+      if(newNum == 0 && den == 1){
+        String newResult = "" + whole;
+        return newResult;
+      }
       return result; //return the result
     }
 
