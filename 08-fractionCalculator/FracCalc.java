@@ -66,31 +66,26 @@ public class FracCalc {
       if (check1 != -1){//If check is -1 that means there is _ in the fraction
         num = convertToImproper(firstEqu, check1, Slash1);
         den = getDenominator(firstEqu, Slash1);
-        //System.out.println(num + "/" + den);
       }
 
       else if ((check1 == -1) && (Slash1 != -1)){// _ is not in the fraction but / is
         num = Integer.parseInt(firstEqu.substring(0, Slash1));
         den = Integer.parseInt(firstEqu.substring(Slash1 + 1));
-        //System.out.println(num + "/" + den);
       }
 
       else{//If there is no _ and / in the fraction it prints the first/second num as it is
         num = Integer.parseInt(firstEqu);
         den = 1;
-        //System.out.println(num + "/" + den);
       }
 
-      if(check2 != -1){
+      if(check2 != -1){//If check is -1 that means there is _ in the fraction
         num2 = convertToImproper(secondEqu, check2, Slash2);
         den2 = getDenominator(secondEqu, Slash2);
-        //System.out.println(num + "/" + den);
-      }//If check is -1 that means there is _ in the fraction
+      }
 
       else if ((check2 == -1) && (Slash2 != -1)){// _ is not in the fraction but / is
         num2 = Integer.parseInt(secondEqu.substring(0, Slash2));
         den2 = Integer.parseInt(secondEqu.substring(Slash2 + 1));
-        //System.out.println("The numerator is: " + num2 + " " + "The denominator is: " + den2);
       }
 
       else{//If there is no _ and / in the fraction it prints the first/second num as it is
@@ -161,6 +156,12 @@ public class FracCalc {
     public static int greatestCommonDivisor(int a, int b){
       int minimum = 1;
       int gcd = 1;
+      if(a < 0){//This is in case the number is negative makes it so the number is being passed into my CTM
+        a *= -1;
+      }
+      if(b < 0){//This is in case the number is negative makes it so the number is being passed into my CTM
+        b *= -1;
+      }
       //Finds min of a and b
       if (a > b){
         minimum = b;
@@ -199,7 +200,7 @@ public class FracCalc {
         return String.valueOf(simpNum);
       }
       if(simpNum == 0){
-        return String.valueOf(simpDen);
+        return String.valueOf(0);
       }
       return simpAns;
     }
@@ -214,10 +215,12 @@ public class FracCalc {
       int whole = num / den; //find whole number
       int newNum = num % den; //find numerator
       String result = whole + "_" + newNum + "/" + den; //organizes makes it look like A_C/D
+
       if(newNum == 0 && den == 1){
         String newResult = "" + whole;
         return newResult;
       }
+
       return result; //return the result
     }
 
@@ -229,8 +232,7 @@ public class FracCalc {
      * @param b - Second integer.
      * @return The LCM.
      */
-
-
+    //Didn't use this method because I did not really need it
     public static int leastCommonMultiple(int a, int b){
       return 0;
 
