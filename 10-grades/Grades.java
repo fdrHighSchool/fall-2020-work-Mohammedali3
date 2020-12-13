@@ -32,13 +32,13 @@ public class Grades{
     System.out.println(average);
 
 
-    int maxNum = 0;
+    int maxNum = 0;//holds the number that appears the most
     int maxShowen = 0;
 
     for(int i = 0; i < arr.length; i++){
-      int count2 = 0;
+      int count2 = 0;//Set back to zero everytime loop happens
       for( int h = 0; h < arr.length; h++){
-        if(arr[i] == arr[h]){
+        if(arr[i] == arr[h]){//Compares the two numbers
           count2++;
         }
       }
