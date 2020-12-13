@@ -1,7 +1,7 @@
 import java.util.*;
 
 
-public class Average{
+public class Grades{
   public static void main(String[] args) {
     //ask for 3 test grades
     Scanner input = new Scanner(System.in);
