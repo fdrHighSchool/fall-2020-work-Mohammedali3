@@ -1,10 +1,10 @@
-import java.util.*;
+import java.util.Arrays;
+
 public class Student {
   // instance variables
   private String name;
   private String osis;
   private int[] grades;
-  Scanner input = new Scanner(System.in);
 
   //------------------------------------------------//
 
@@ -19,9 +19,7 @@ public class Student {
 
   // other methods
   public String getName() {
-    System.out.print("Please enter your name: ");
-    String holdsName = input.nextLine();
-    return holdsName;
+    return this.name;
   }//end getName method
 
 
@@ -31,10 +29,21 @@ public class Student {
   }//end getOSIS method
 
 
+  public void displayGrades() {
+    System.out.println(Arrays.toString(this.grades));
+  }//end getGrades method
+
   public void setName(String name) {
     this.name = name;
-
   }//end setName method
+
+
+  public void fillArray() {
+    for (int i = 0; i < this.grades.length; i++) {
+       this.grades[i] = (int)(Math.random() * 46 + 55);
+    }//end for loop
+  }//end fillArray method
+
 
   /*
    * N: addGrade
@@ -46,18 +55,31 @@ public class Student {
    * R: n/a
    */
   public void addGrade(int grade) {
-    
+    int i = 0;
 
+    while (this.grades[i] != 0) {
+      i++;
+    }//end while loop
+
+    this.grades[i] = grade;
   }//end addGrade method
 
 
   public double calculateAverage() {
-    int sum = 0;
-    for (int grades : arr) {
-      sum += grades;
-    }
-    return (double)sum / arr.length;
+    double sum = 0;
+    int count = 0;
+
+    //go through array
+    for (int i = 0; i < this.grades.length; i++){
+      //determine if value is not 0
+      if (this.grades[i] != 0) {
+        sum += this.grades[i];
+        count++;
+      }//end if statement
+    }//end for loop
+    return sum / count;
   }//end calculateAverage() method
+
 
   /*
    * Returns the String representation of a Student.
@@ -69,6 +91,5 @@ public class Student {
     return "Student: " + this.name + " OSIS: " + this.osis;
 
   }//end toString method
-
 
 }//end class
