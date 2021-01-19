@@ -1,35 +1,34 @@
 import java.util.Arrays;
+import java.util.Random;
 
 public class Anime {
   // instance variables
-  private String favAnime;
-  private String[] randomAnime;//Holds different animes
+  private String Name;
+  private String Genre;
+  private String Episodes;
 
-
-  public Anime(String FA) {
-    this.favAnime = FA;
-    this.randomAnime = new String[]{"One piece","Naruto","Bleach","Log Horizon","Dororo","Demon Slayer","Fire force","Overlord","Black Clover","Attack on Titan","Jujutsu kaisen"};
+  public Anime(String n, String g, String e) {
+    this.Name = n;
+    this.Genre = g;
+    this.Episodes = e;
   }//end constructor
 
+  public String getName() {
+    return this.Name;
+  }//end getName method
 
-  public String getAnime(){
-    return this.favAnime;
-  }
+  public String getGenre() {
+    return this.Genre;
+  }//end getGenre method
 
-  public void setAnime(String favAnime) {
-    this.favAnime = favAnime;
-  }
-
+  public String getEpisodes() {
+    return this.Episodes;
+  }//end getEpisodes method
 
   public String toString() {
-    return "Favorite anime: " + this.favAnime;
+    return "Recommendation: " + this.Name +" "+ "Genre: " + this.Genre +" "+ " Episodes: " + this.Episodes;
   }//end toString method
 
-  public pickRandom(){
-    Random Anime = new Random();
-    int index = Anime.nextInt(this.randomAnime.length);
-    System.out.println(this.randomAnime[index]);
-    return index;
-  }
+
 
 }// end class
